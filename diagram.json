@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "author": "IoT Architect",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-membrane-keypad", "id": "keypad", "top": -300, "left": -40, "attrs": {} },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir", "top": -120, "left": 280, "attrs": {} },
+    { "type": "wokwi-servo", "id": "servo", "top": 120, "left": 300, "attrs": {} },
+    { "type": "wokwi-led", "id": "ledG", "top": 260, "left": 40, "attrs": { "color": "green" } },
+    { "type": "wokwi-led", "id": "ledR", "top": 260, "left": 120, "attrs": { "color": "red" } },
+    { "type": "wokwi-resistor", "id": "rG", "top": 200, "left": 30, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "rR", "top": 200, "left": 110, "attrs": { "value": "220" } }
+  ],
+  "connections": [
+    ["esp:TX0", "$serialMonitor:RX", "", []],
+    ["esp:RX0", "$serialMonitor:TX", "", []],
+
+    ["keypad:R1", "esp:D19", "green", []],
+    ["keypad:R2", "esp:D18", "green", []],
+    ["keypad:R3", "esp:D5",  "green", []],
+    ["keypad:R4", "esp:D23", "green", []],
+    ["keypad:C1", "esp:D32", "blue", []],
+    ["keypad:C2", "esp:D33", "blue", []],
+    ["keypad:C3", "esp:D14", "blue", []],
+    ["keypad:C4", "esp:D4",  "blue", []],
+
+    ["pir:VCC", "esp:VIN", "red", []],
+    ["pir:GND", "esp:GND.1", "black", []],
+    ["pir:OUT", "esp:D27", "orange", []],
+
+    ["servo:V+", "esp:VIN", "red", []],
+    ["servo:GND", "esp:GND.1", "black", []],
+    ["servo:PWM", "esp:D13", "purple", []],
+
+    ["esp:D25", "rG:1", "green", []],
+    ["rG:2", "ledG:A", "green", []],
+    ["ledG:C", "esp:GND.2", "black", []],
+
+    ["esp:D26", "rR:1", "red", []],
+    ["rR:2", "ledR:A", "red", []],
+    ["ledR:C", "esp:GND.2", "black", []]
+  ],
+  "dependencies": {}
+}
